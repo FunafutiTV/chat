@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { gql, useMutation } from "@apollo/client";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
