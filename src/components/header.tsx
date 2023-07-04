@@ -63,6 +63,12 @@ export function Header() {
               >
                 Sign in with GitHub
               </button>
+              <button>
+                Sign in with email
+              </button>
+              <button>
+                Sign up with email
+              </button>
             </div>
           )}
         </div>
