@@ -1,7 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { useSession } from "next-auth/client";
 
 import type { Message as IMessage } from "@/components/message";
 import { Message } from "@/components/message";
@@ -29,9 +28,7 @@ export const MessageList = () => {
     delay: 1000,
   });
 
-  const [session, loading] = useSession();
-
-  const { loading: queryLoading, error, data } = useQuery<{
+  const { loading, error, data } = useQuery<{
     messageCollection: { edges: { node: IMessage }[] };
   }>(GetRecentMessagesQuery, {
     variables: {
@@ -45,22 +42,18 @@ export const MessageList = () => {
     }
   }, [data?.messageCollection.edges.length, entry?.target]);
 
-  if (loading || queryLoading)
+  if (loading)
     return (
       <div className="flex items-center justify-center h-full">
         <p className="text-white">Fetching most recent chat messages.</p>
       </div>
     );
 
-  if (error && !session) {
+  if (error)
+    console.log(error);
     return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-white">
-          Unable to fetch chat messages. Please try again later.
-        </p>
-      </div>
+      <p className="text-white">Something went wrong. Refresh to try again.</p>
     );
-  }
 
   return (
     <div className="flex flex-col w-full space-y-3 overflow-y-scroll no-scrollbar">
@@ -69,7 +62,7 @@ export const MessageList = () => {
           <button
             className="py-1.5 px-3 text-xs bg-[#1c1c1f] border border-[#363739] rounded-full text-white font-medium"
             onClick={() => {
-              entry?.target.scrollIntoView({ behavior: "smooth", block: "end" });
+              entry?.target.scrollIntoView({ behavior: "smooth", block: "end" })
             }}
           >
             Scroll to see latest messages
