@@ -51,6 +51,7 @@ export const MessageList = () => {
 
   if (error)
     console.log(error);
+    console.log(data);
     return (
       <p className="text-white">Something went wrong. Refresh to try again.</p>
     );
