@@ -10,14 +10,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getServerSession(req, res, authOptions);
-
-  if (!session) {
-    return res.send({
-      error:
-        "You must be signed in to view the protected content on this page.",
-    });
-  }
+  // const session = await getServerSession(req, res, authOptions);
 
   const token = await getToken({ req, secret, raw: true });
 

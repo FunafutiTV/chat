@@ -1,5 +1,4 @@
 import { useSession } from "next-auth/react";
-
 import { Header } from "@/components/header";
 import { MessageList } from "@/components/message-list";
 import { NewMessageForm } from "@/components/new-message-form";
