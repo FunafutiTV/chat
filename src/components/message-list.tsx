@@ -50,6 +50,7 @@ export const MessageList = () => {
     );
 
   if (error)
+    console.log(error);
     return (
       <p className="text-white">Something went wrong. Refresh to try again.</p>
     );
