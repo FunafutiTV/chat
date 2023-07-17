@@ -49,11 +49,12 @@ export const MessageList = () => {
       </div>
     );
 
-  if (error)
+  if (error) {
     console.log(error);
     return (
       <p className="text-white">Something went wrong. Refresh to try again.</p>
     );
+  }
 
   return (
     <div className="flex flex-col w-full space-y-3 overflow-y-scroll no-scrollbar">
